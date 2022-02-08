@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<th:block th:fragment="setContent(content)">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <title>Real Estate NOAH</title>
+
+<style>
+    @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+    @import url(https://fonts.googleapis.com/css?family=Oleo+Script);
+
+    * {
+        margin:0;
+        padding:0;
+    }
+    body {
+        background: #fff;
+        font-family: "Jeju Gothic", serif;
+    }
+    a {
+        text-decoration: none;
+    }
+    nav a:link, a:visited {
+        color: #fff;
+    }
+    nav a:active {
+        color: yellow;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    p {
+        font-size: 1.3em;
+        line-height: 2.5;
+    }
+    li {
+        font-size: 1em;
+        line-height: 2;
+    }
+
+    /* 모바일 - 767px 이하 */
+    #container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    header {
+        width: 100%;
+        height: 300px;
+        background: center no-repeat;
+        background-size: cover;
+        margin: 0;
+    }
+    nav {
+        height: 50px;
+        background: #000;
+    }
+    #main-nav {
+        list-style: none;
+        margin: 0;
+        padding: 10px;
+    }
+    #main-nav li {
+        display: inline-block;
+        color: #fff;
+        font-family: "맑은 고딕", 돋움;
+        font-size: 0.8em;
+        margin: 5px 15px;
+    }
+    section {
+        position: relative;
+        width: 100%;
+        padding: 15px 5% 10px 5%;
+    }
+    #container section:nth-child(odd) {
+        background: #eee;
+    }
+    .page-title {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        padding: 30px 50px;
+    }
+    .page-title h1 {
+        margin-bottom: 30px;
+    }
+    .content {
+        margin: 80px auto 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 90%;
+        padding: 20px;
+    }
+    .content ol {
+        margin-top: 20px;
+    }
+    .sub-titles {
+        color: #0094ff;
+        font-weight: 600;
+    }
+    .photo {
+        display: none;
+    }
+    footer {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: #000;
+    }
+    footer p {
+        font-family: 'Oleo Script', cursive;
+        font-size: 1.5em;
+        line-height: 100px;
+        color: white;
+        text-align: center;
+    }
+
+    /* 태블릿 - 768px 이상 */
+    @media screen and (min-width:768px) {
+        header {
+            height: 400px;
+        }
+        #intro, #map {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 50%;
+            height: 400px;
+            float: left;
+            margin: 0;
+            border: 1px dotted #ccc;
+        }
+        #choice {
+            clear: left;
+        }
+    }
+
+    /* PC - 992px 이상 */
+    @media screen and (min-width:992px) {
+        #container {
+            width: 995px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        header {
+            height: 50px;
+
+        }
+        #intro, #map, #choice {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            clear: both;
+            position: relative;
+            width: 100%;
+            height: 420px;
+            padding: 15px 2% 10px 5%;
+        }
+        .content {
+            margin: 80px auto 10px;
+            width: 90%;
+            padding: 20px;
+        }
+        .photo {
+            width: 42%;
+            display: block;
+        }
+        .photo > img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        .text {
+            width: 42%;
+        }
+        #intro .photo, #map .photo {
+            float: left;
+            margin-right: 5%;
+        }
+        #intro .text, #map .text {
+            float: left;
+        }
+        #choice .photo {
+            float: right;
+            margin-right: 5%;
+        }
+        #choice .text {
+            float: left;
+        }
+        #intro .photo, #map .photo {
+            float: left;
+            margin-right: 5%;
+        }
+
+        footer {
+            clear: both;
+        }
+    }
+
+</style>
+</head>
+    <div id="container">
+        <header>
+            <nav>
+                <ul id="main-nav">
+                    <li><a href="#intro">About Us</a></li>
+                    <li><a href="#map">Where we are</a></li>
+                    <li><a href="#map">매수</a></li>
+                    <li><a href="#map">매도</a></li>
+                    <li><a href="#map">임대</a></li>
+                    <li><a href="#map">투자</a></li>
+                    <li><a href="#map">재개발</a></li>
+                    <li><a href="#map">쉐어하우스</a></li>
+                    <li><a href="#map">수익형 부동산</a></li>
+                    <li><a href="#map">땅</a></li>
+                    <li><a href="#choice">고객지원</a></li>
+                    <li><a href="#choice">오늘의 경제</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/메인1.jpg" class="d-block w-100" alt="아파트">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>당신이 꿈꾸는 모든 부동산</h5>
+                        <p>노마스크 건강하고 윤택한 삶의 표본, 숲세권 프라이빗 풀빌라 </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/메인2.png" class="d-block w-100" alt="오피스텔">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>수도 서울의 기둥, 강북 최고의 Skyscraper</h5>
+                        <p>한강의 기적 같은 당신의 커리어가 쉴 수 있는 안식처</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/메인3.jpg" class="d-block w-100" alt="주택">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>부산 주택가의 변신</h5>
+                        <p>다시 떠오른 부산의 원조 부촌, 남천동의 초소형 복층식 고급주택단지</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <section id="intro">
+            <div class="page-title">
+                <h1>About Us</h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="/images/vr1.gif" alt="">
+                </div>
+                <div class="text">
+                    <p> 21세기 4차 산업의 핵심, 비대면 중개 </p>
+
+                    <p> "언택트 계약, 이것은 선택이 아닌 필수이자 윤택한 삶의 표본입니다." </p>
+
+                    <p>(<i><small>언제 어디서든 내가 원하는 매물을 한 눈에!</small></i>)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="map">
+            <div class="page-title">
+                <h1>Where we are</h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/earth.gif" alt="당신이 위치한 지구 반대편 통신망이 닿는 전세계 모든 지역까지">
+                </div>
+                <div class="text">
+                    <p>은하계 지구행성 인류의 모든 건축물</p>
+                    <p>VR기기를 연동해 가상 임장을 떠나고 노마스크 언택트로 바로 계약하세요!</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>매수 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/매수.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>내 집을 사는 매수인이 되어보세요!</h2>
+                    <ol>
+                        <li>아파트(주상복합)</li>
+                        <li>오피스텔(주거용/업무용)</li>
+                        <li>주택(단독/연립)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>매도 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/매도.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>내 집을 파는 매도인이 되어보세요!</h2>
+                    <ol>
+                        <li>아파트(주상복합)</li>
+                        <li>오피스텔(주거용/업무용)</li>
+                        <li>주택(단독/연립)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>임대 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/임대.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>임차인 또는 임대인이 되어보세요!</h2>
+                    <ol>
+                        <li>아파트(주상복합)</li>
+                        <li>오피스텔(주거용/업무용)</li>
+                        <li>주택(단독/연립)</li>
+                        <li>상가(제1-2종근린시설)</li>
+                        <li>기타(장기,단기)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>투자 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/투자.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>현명한 투자자가 되어보세요!</h2>
+                    <ol>
+                        <li>아파트(주상복합)</li>
+                        <li>오피스텔(주거용/업무용)</li>
+                        <li>주택(단독/연립)</li>
+                        <li>땅(재개발,임야)</li>
+                        <li>수익형 부동산(호텔 등)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>재개발 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/재개발.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>재개발 지역을 알아보세요!</h2>
+                    <ol>
+                        <li>국내</li>
+                        <li>아시아</li>
+                        <li>북미, 중남미</li>
+                        <li>아프리카</li>
+                        <li>유럽, 오세아니아</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>쉐어하우스 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/쉐어하우스.jpeg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>단기계약</h2>
+                    <ol>
+                        <li>게스트하우스</li>
+                        <li>오피스텔(주거용/업무용)</li>
+                        <li>주택(단독/연립)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>수익형 부동산 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/수익형부동산.jpg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>객실 소유자가 되어보세요!</h2>
+                    <ol>
+                        <li>5성급 호텔</li>
+                        <li>관광호텔</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>땅 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/땅.jpg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>토지매매</h2>
+                    <ol>
+                        <li>주차장</li>
+                        <li>임야</li>
+                        <li>대지</li>
+                        <li>주거밀집지역</li>
+                        <li>개발예정지역</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>고객지원 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/고객지원.jpg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>문의사항</h2>
+                    <ol>
+                        <li>24시간 상담가능</li>
+                        <li>02-111-1111</li>
+                        <li>031-111-1111</li>
+                        <li>051-111-1111</li>
+                        <li>noah@info.casa.com</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+                <h1>오늘의 경제 </h1>
+            </div>
+            <div class="content">
+                <div class="photo">
+                    <img src="images/경제뉴스.jpg" alt="자세히보기" style="border:1px solid white; border-radius:50%">
+                </div>
+                <div class="text">
+                    <h2>전세계 최신 부동산 뉴스를 한 눈에!</h2>
+                    <ol>
+                        <li>국내</li>
+                        <li>아시아</li>
+                        <li>북미, 중남미</li>
+                        <li>아프리카</li>
+                        <li>유럽, 오세아니아</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Real Estate Worldwide with VR by Noah</p>
+        </footer>
+    </div>
+    </body>
+</th:block>
+</html>
